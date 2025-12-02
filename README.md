@@ -85,6 +85,29 @@ public WebMvcConfigurer corsConfigurer() {
 }
 }
 
+#Swagger UI Link
+
+http://localhost:8081/swagger-ui/index.html#/auth-controller/login
+
+#end points:
+
+http://localhost:8081/api/auth/register
+
+{
+  "name": "Ashraf123",
+  "email": "ashraf1234@example.com",
+  "password": "12345"
+}
+
+
+http://localhost:8081/api/auth/login
+
+{
+  "email": "ashraf@example.com",
+  "password": "12345"
+}
+
+
 🎯 Frontend Setup (React) 1️⃣ Create React App npx create-react-app nomaniskababfrontend cd nomaniskababfrontend npm install axios react-router-dom
 
 2️⃣ Configure Routing (src/App.js) import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; import Home from "./Home"; import Login from "./Login"; import Signup from "./Signup";
