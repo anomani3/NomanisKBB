@@ -4,9 +4,13 @@ import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
 
+
 function App() {
   return (
     <Router>
+      <Navbar />
+      <AccountIcon />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
