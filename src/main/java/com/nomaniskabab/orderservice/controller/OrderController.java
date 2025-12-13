@@ -1,49 +1,56 @@
 package com.nomaniskabab.orderservice.controller;
+
 import com.nomaniskabab.orderservice.entity.Order;
 import com.nomaniskabab.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
-@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class OrderController {
 
     private final OrderService orderService;
 
-    @PostMapping("/place")
-    public Order placeOrder(@RequestBody Order order) {
-        return orderService.placeOrder(order);
+    // ---------------- PLACE ORDER ----------------
+    @PostMapping
+    public ResponseEntity<Order> placeOrder(@RequestBody Order order) {
+        return ResponseEntity.ok(orderService.placeOrder(order));
     }
 
+    // ---------------- GET ORDER ----------------
     @GetMapping("/{id}")
-    public Order getOrder(@PathVariable Long id) {
-        return orderService.getOrder(id);
+    public ResponseEntity<Order> getOrder(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.getOrder(id));
     }
 
+    // ---------------- GET USER ORDERS ----------------
     @GetMapping("/user/{userId}")
-    public List<Order> getOrdersByUser(@PathVariable Long userId) {
-        return orderService.getUserOrders(userId);
+    public ResponseEntity<List<Order>> getUserOrders(@PathVariable Long userId) {
+        return ResponseEntity.ok(orderService.getUserOrders(userId));
     }
 
-    @GetMapping("/all")
-    public List<Order> getAllOrders() {
-        return orderService.getAllOrders();
+    // ---------------- GET ALL ORDERS ----------------
+    @GetMapping
+    public ResponseEntity<List<Order>> getAllOrders() {
+        return ResponseEntity.ok(orderService.getAllOrders());
     }
 
-    @PutMapping("/update/{id}")
-    public Order updateOrder(
+    // ---------------- UPDATE STATUS ----------------
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Order> updateStatus(
             @PathVariable Long id,
-            @RequestParam String status) {
-        return orderService.updateStatus(id, status);
+            @RequestParam String status
+    ) {
+        return ResponseEntity.ok(orderService.updateStatus(id, status));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteOrder(@PathVariable Long id) {
-        return orderService.deleteOrder(id);
+    // ---------------- DELETE ORDER ----------------
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteOrder(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.deleteOrder(id));
     }
 }
-

@@ -1,27 +1,25 @@
 package com.nomaniskabab.orderservice.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
-@Data
-//@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "orders")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;     // who placed the order
-    private String items;    // JSON list of items
-    private double totalAmount;
+    private Long userId;
 
-    private String status = "PENDING";  // PENDING, CONFIRMED, CANCELLED, DELIVERED
-    private LocalDateTime orderDate = LocalDateTime.now();
+    private Double totalAmount;
+
+    // ✅ THIS MUST EXIST
+    private String status;
 }
